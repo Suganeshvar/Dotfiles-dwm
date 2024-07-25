@@ -1,0 +1,21 @@
+#!/bin/bash
+
+lines=15
+prompt="Exit Session?"
+
+while true; do
+    selection=$(echo -e 'Cancel\nLogout\nPoweroff\nRestart' | dmenu -i -l "${lines}" -p "${prompt}" -nb '#000000' -nf '#FFFFFF' -sb '#666666' -sf '#000000')
+
+    case "$selection" in
+        Cancel)
+            exit ;;
+        Logout)
+            pkill dwm ;;
+        Poweroff)
+            systemctl poweroff ;;
+        Restart)
+            systemctl reboot ;;
+        *)
+            exit ;;
+    esac
+done
